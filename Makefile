@@ -1,0 +1,22 @@
+CC=gcc
+CFLAGS=-Wall -fsanitize=address -O2
+
+CLIENT_DIR=client
+SERVER_DIR=server
+
+CLIENT_SRC=$(CLIENT_DIR)/client.c
+SERVER_SRC=$(SERVER_DIR)/server.c
+
+CLIENT_BIN=$(CLIENT_DIR)/client
+SERVER_BIN=$(SERVER_DIR)/server
+
+all: $(CLIENT_BIN) $(SERVER_BIN)
+
+$(CLIENT_BIN): $(CLIENT_SRC)
+	$(CC) $(CFLAGS) -o $(CLIENT_BIN) $(CLIENT_SRC)
+
+$(SERVER_BIN): $(SERVER_SRC)
+	$(CC) $(CFLAGS) -o $(SERVER_BIN) $(SERVER_SRC)
+
+clean:
+	rm -f $(CLIENT_BIN) $(SERVER_BIN)
